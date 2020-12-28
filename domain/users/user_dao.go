@@ -1,6 +1,7 @@
 package users
 
 import (
+	"github.com/AliSootoodeh/go-micro-api/utils/date_utils"
 	"github.com/AliSootoodeh/go-micro-api/utils/errors"
 )
 
@@ -12,5 +13,7 @@ func (user *User) Get() *errors.RestErr {
 
 //Save ...
 func (user *User) Save() *errors.RestErr {
+
+	user.DateCreated = date_utils.GetNowString()
 	return nil
 }
