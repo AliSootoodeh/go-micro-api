@@ -17,8 +17,8 @@ const (
 )
 
 var (
-	//UsersDB ...
-	UsersDB *sql.DB
+	//Client ...
+	Client *sql.DB
 
 	username = os.Getenv("mysqlUsersUsername")
 	password = os.Getenv("mysqlUsersPassword")
@@ -29,11 +29,11 @@ var (
 func init() {
 	datasourceName := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8", username, password, host, schema)
 	var err error
-	UsersDB, err = sql.Open("mysql", datasourceName)
+	Client, err = sql.Open("mysql", datasourceName)
 	if err != nil {
 		panic(err)
 	}
-	if err = UsersDB.Ping(); err != nil {
+	if err = Client.Ping(); err != nil {
 		panic(err)
 	}
 	log.Println("database successfully configured")
